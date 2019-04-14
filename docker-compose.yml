@@ -1,0 +1,30 @@
+version: '3.0'
+services:
+    remote:
+        build: ./remote
+        container_name: remote
+        env_file: ./remote/env
+        environment:
+            - PATH=/remote/bin:$PATH
+        volumes:
+            - ./remote/bin:/remote/bin
+            - ./remote/source:/remote/source
+            - ./remote/script:/remote/script
+        ports:
+            - "2222:22"
+            - "8888:8888"
+        cap_add:
+            - SYS_RAWIO
+        privileged: true
+        tty: true
+        devices:
+            - /dev/mem
+            - /dev/vcio
+            - /dev/ttyAMA0
+        command: sh -c "pigpiod && python3.5 /remote/script/RemoteCodeReciever.py"
+    httpdphp:
+        image: arm32v7/php:7.2-apache
+        ports:
+            - "20080:80"
+        volumes:
+            - ./web/htdocs:/var/www/html

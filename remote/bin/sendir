@@ -1,0 +1,14 @@
+#!/bin/sh
+
+# Out Port
+outPort=${IR_OUT_GPIO_PORT}
+
+# IR file path
+fileFullPath="/remote/source/"${1}
+
+# IR command
+commandId=${2}
+
+# execute irrp
+commandReturn=$(irrp -p -g${outPort} -f ${fileFullPath} ${commandId} 2>&1)
+echo $commandReturn
