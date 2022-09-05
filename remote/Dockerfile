@@ -1,8 +1,8 @@
-FROM armhf/alpine:latest
+FROM alpine:latest
 MAINTAINER souri-t <souri-t@github.com>
 
 # Install Python
-RUN apk --update --no-cache add python3 python3-dev musl-dev
+RUN apk --update --no-cache add python3 python3-dev musl-dev py3-pip
 RUN pip3 install --upgrade pip
 RUN pip3 install watchdog
 

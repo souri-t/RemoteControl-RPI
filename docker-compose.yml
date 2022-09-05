@@ -21,7 +21,7 @@ services:
             - /dev/mem
             - /dev/vcio
             - /dev/ttyAMA0
-        command: sh -c "pigpiod && python3.5 /remote/script/RemoteCodeReciever.py"
+        command: sh -c "pigpiod && python3.10 /remote/script/RemoteCodeReciever.py"
     httpdphp:
         image: arm32v7/php:7.2-apache
         ports:
